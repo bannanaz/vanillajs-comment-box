@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Gothic+A1:wght@500;900&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="bundle.js" defer></script>
+    <title>Commentbox – using local storage and date-fns library</title>
+</head>
+<body>
+  
+<header>
+<h1>SAY HI!</h1>    
+</header>
+
+<main>
+
+<form novalidate>
+<label for="name"></label>
+<input type="text" name="name" id="name" value="" placeholder="Ditt namn." required></input>
+<span class="error" aria-live="polite"></span>
+<br>
+<label for="message"></label>  
+<textarea name="message" id="message" value="" placeholder="Skriv något snällt!" required></textarea>
+<span class="error" aria-live="polite"></span> 
+<input type="submit" id="submit" value="POST">
+</form>
+
+<br>
+<div id="display" class="display"></div>
+    
+</main>
+</body>
+</html>
