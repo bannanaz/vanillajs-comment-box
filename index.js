@@ -2,7 +2,6 @@
 const list = document.querySelector('.displayList');
 const inputName = document.getElementById('name');
 const inputText = document.getElementById('message');
-
 let messageList = [];
 
 document.addEventListener('DOMContentLoaded', initialize);
@@ -49,16 +48,18 @@ list.addEventListener('click', evt => {
 });
 
 function messageObjToHTML(messageObj) {
-  // givet ett noteObj IN, returnera HTML
   let LI = document.createElement('li');
   LI.setAttribute('data-id', messageObj.id);
   LI.classList.add("renderedLi");
+
+  let oldDate = new Date(messageObj.id);
+  let displayDate = moment().from(oldDate, Boolean);
 
   LI.innerHTML =
     `<p>${messageObj.like ? '♥' : '♡'}</p>
     <p>${messageObj.name}</p>
     <p>${messageObj.text}</p>
-    <p>${messageObj.id}</p>
+    <p>${displayDate} ago</p>
     <hr>
   `
   return LI
