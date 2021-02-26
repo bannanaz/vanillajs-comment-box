@@ -1,5 +1,8 @@
 
 const list = document.querySelector('.displayList');
+const inputName = document.getElementById('name');
+const inputText = document.getElementById('message');
+
 let messageList = [];
 
 document.addEventListener('DOMContentLoaded', initialize);
@@ -27,14 +30,14 @@ function addMessage(name, text) {
 const form = document.getElementById('inputForm');
 form.addEventListener('submit', evt => {
   evt.preventDefault();
-  const inputName = document.getElementById('name');
-  const inputText = document.getElementById('message');
 
   const name = inputName.value;
   const text = inputText.value;
 
   if (name || text !== '') {
     addMessage(name, text);
+    inputName.value = "";
+    inputText.value = "";
   }
 });
 
@@ -90,20 +93,3 @@ function toggleLike(id) {
 function setActiveMessageID(id) {
   activeMessageID = id;
 }
-
-/*
-// loop array
-for (var i in allPosts) {
-  let pastTimestamp = new Date(allPosts[i].timestamp);
-  let nowTimestamp = new Date();
-  let result = differenceInDays(nowTimestamp, pastTimestamp);
-
-  if (result == 0) {
-    document.getElementById("display").innerHTML += "<br>" + (allPosts[i].name + "<br>" + allPosts[i].message + "<br>" + "Idag" + "<br>" + "<br>");
-  }
-
-  else {
-    document.getElementById("display").innerHTML += "<br>" + (allPosts[i].name + "<br>" + allPosts[i].message + "<br>" + result + " dagar sedan" + "<br>" + "<br>");
-  }
-}
-*/
