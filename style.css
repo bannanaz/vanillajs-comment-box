@@ -10,8 +10,7 @@
     border-radius: 30px;
     font-size: 80px;
     letter-spacing: 11px;
-    margin-top: 4rem;
-    margin-bottom: 3rem;
+    margin-top: 1em;
     font-family: 'Fredoka One', cursive;
   }
 
@@ -29,7 +28,7 @@
   }
 
   input[type=text] {
-    min-width: 270px;
+    width: 280px;
     background-color: white;
     height: 25px; 
     font-size: 16px; 
@@ -41,7 +40,7 @@
   }
 
   textarea {
-    min-width: 270px;
+    width: 280px;
     background-color: white;
     border: none;
     height: 160px;
@@ -79,15 +78,17 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    flex-wrap: wrap;
-    min-width: 300px;
+    flex-wrap: nowrap;
+    width: 320px;
     background-color:white; 
     border-radius: 6px;
     overflow: auto;
     height: 400px;
     margin: 0px 30px;
     padding-top: 15px;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
   }
 
   .renderedLi{
@@ -97,25 +98,43 @@
     margin-left: auto; 
     margin-right: auto; 
     list-style-type: none;
+    cursor: pointer;
   }
 
   .renderedLi > p:first-of-type{
+    background-color: white; 
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 0;
+        text-align: right;
+        color: #ff6b6b;
+        margin-top: 25px;
+        cursor: pointer;
+  }
+
+  .renderedLi > p:nth-of-type(2){
     background-color: white; 
         font-size: 16px;
         font-weight: bold;
         line-height: 0;
   }
 
-  .renderedLi > p:nth-of-type(2){
+  .renderedLi > p:nth-of-type(3){
     background-color: white; 
         font-size: 16px;
   }
 
-  .renderedLi > p:nth-of-type(3){
+  .renderedLi > p:nth-of-type(4){
     background-color: white; 
     color: gray;
     font-size: 12px;
     font-style: italic;
     line-height: 0;
+    text-align: right;
+    padding-bottom: 10px;
+  }
+
+  .renderedLi > hr{
+    color:#dbdbdc;
   }
 

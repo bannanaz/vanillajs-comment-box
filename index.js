@@ -13,18 +13,20 @@ function addMessage(name, text) {
   const messageObj = {
     name,
     text,
+    like: false,
     id: Date.now(),
   };
 
   messageList.push(messageObj);
   saveMessages();
+  setActiveMessageID(messageObj.id);
   renderMessageList(messageList);
   console.log(messageList);
 }
 
 const form = document.getElementById('inputForm');
-form.addEventListener('submit', event => {
-  event.preventDefault();
+form.addEventListener('submit', evt => {
+  evt.preventDefault();
   const inputName = document.getElementById('name');
   const inputText = document.getElementById('message');
 
@@ -36,23 +38,33 @@ form.addEventListener('submit', event => {
   }
 });
 
+list.addEventListener('click', evt => {
+  let clickedLI = evt.target.closest('li');
+  let clickedID = clickedLI.getAttribute('data-id');
+  toggleLike(clickedID);
+  renderMessageList(messageList);
+});
+
 function messageObjToHTML(messageObj) {
   // givet ett noteObj IN, returnera HTML
   let LI = document.createElement('li');
+  LI.setAttribute('data-id', messageObj.id);
   LI.classList.add("renderedLi");
 
   LI.innerHTML =
-    `<p>${messageObj.name}</p>
+    `<p>${messageObj.like ? '♥' : '♡'}</p>
+    <p>${messageObj.name}</p>
     <p>${messageObj.text}</p>
     <p>${messageObj.id}</p>
+    <hr>
   `
   return LI
 }
 
 function renderMessageList(arr) {
   list.innerHTML = '';
-  arr.forEach(function (note) {
-    list.appendChild(messageObjToHTML(note));
+  arr.forEach(function (post) {
+    list.prepend(messageObjToHTML(post));
   })
 }
 
@@ -69,7 +81,15 @@ function saveMessages() {
   localStorage.setItem('allPosts', JSON.stringify(messageList))
 }
 
+function toggleLike(id) {
+  let messageObj = messageList.find(key => key.id == id);
+  messageObj.like = !messageObj.like;
+  saveMessages();
+}
 
+function setActiveMessageID(id) {
+  activeMessageID = id;
+}
 
 /*
 // loop array
