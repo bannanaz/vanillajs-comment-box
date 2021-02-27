@@ -25,7 +25,8 @@
 
         <div class="writeComment">
             <form id="inputForm" novalidate>
-                <input type="text" name="name" id="name" value="" placeholder="Your name" required></input>
+                <input type="text" class="inputName" name="name" id="name" value="" placeholder="Your name"
+                    required></input>
                 <span class="error" aria-live="polite"></span>
                 <br>
                 <textarea name="message" id="message" value="" placeholder="Write something nice!" required></textarea>
@@ -34,7 +35,10 @@
             </form>
         </div>
 
-        <div id="displayList" class="displayList">
+        <div class="displayListWrapper">
+            <input type="text" class="search icon" value="" placeholder="Search posts"></input>
+            <div id="displayList" class="displayList">
+            </div>
         </div>
 
     </main>

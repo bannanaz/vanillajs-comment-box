@@ -1,6 +1,6 @@
 
 const list = document.querySelector('.displayList');
-
+const search = document.querySelector('.search');
 const inputName = document.getElementById('name');
 const inputText = document.getElementById('message');
 let messageList = [];
@@ -8,6 +8,19 @@ let messageList = [];
 document.addEventListener('DOMContentLoaded', initialize);
 
 function initialize() {
+
+  search.addEventListener('input', function (evt) {
+    evt.preventDefault();
+    let searchStr = evt.target.value;
+    console.log(searchStr);
+    if (searchStr.length >= 1) {
+      let foundNotes = searchNotes(searchStr);
+      renderMessageList(foundNotes);
+    } else {
+      renderMessageList(messageList)
+    }
+  })
+
   getMessages();
   renderMessageList(messageList);
 }
@@ -43,19 +56,23 @@ form.addEventListener('submit', evt => {
 
 list.addEventListener('click', evt => {
   if (evt.target.classList.contains('like')) {
-    const itemKey = evt.target.parentElement.dataset.key;
-    toggleLike(itemKey);
+    const id = evt.target.parentElement.dataset.key;
+    console.log(id);
+    toggleLike(id);
     renderMessageList(messageList);
   }
 
   if (evt.target.classList.contains('delete')) {
-    const itemKey = evt.target.parentElement.dataset.key;
-    deleteComment(itemKey);
+    const id = evt.target.parentElement.parentElement.dataset.key;
+    deleteComment(id);
+    saveMessages();
+    renderMessageList(messageList);
+
   }
 });
 
 function messageObjToHTML(messageObj) {
-  const item = document.querySelector(`[data-key='${messageObj.id}']`);
+  //const item = document.querySelector(`[data-key='${messageObj.id}']`);
 
   const LI = document.createElement("li");
   LI.setAttribute('data-key', messageObj.id);
@@ -66,9 +83,9 @@ function messageObjToHTML(messageObj) {
 
   LI.innerHTML =
     `<p class='like'>${messageObj.like ? '♥' : '♡'}</p>
-    <p>${messageObj.name}</p>
+    <p>From: ${messageObj.name}</p>
     <p>${messageObj.text}</p>
-    <div>
+    <div>  
       <p>${displayDate} ago</p>
       <p class='delete'>🗑️</p>
     </div>
@@ -107,6 +124,12 @@ function setActiveMessageID(id) {
   activeMessageID = id;
 }
 
-function deleteComment(id) {
-  console.log('deleted!');
+function searchNotes(str, func = function (note) { return note.name.toLowerCase().includes(str.toLowerCase()) || note.text.toLowerCase().includes(str.toLowerCase()) }) {
+  return messageList.filter(func)
 }
+
+function deleteComment(key) {
+  messageList = messageList.filter(item => item.id !== Number(key));
+  console.log(messageList);
+}
+

@@ -6,7 +6,7 @@
 
   h1 {
     text-align: center;
-    color:#dbdbdc;
+    color: #ebebec;
     border-radius: 30px;
     font-size: 80px;
     letter-spacing: 11px;
@@ -27,20 +27,24 @@
     font-family: 'Open Sans', sans-serif;
   }
 
-  input[type=text] {
-    width: 280px;
+  .inputName {
+    width: 250px;
     background-color: white;
-    height: 25px; 
+    height: 20px; 
     font-size: 16px; 
     margin: 0px 30px 10px 30px;
     padding: 15px;
-    border: none;
-    outline: none;
     border-radius: 6px;
+    border: none; 
+    outline: none; 
+  }
+
+  ::placeholder{
+    font-style: italic;
   }
 
   textarea {
-    width: 280px;
+    width: 250px;
     background-color: white;
     border: none;
     height: 160px;
@@ -74,20 +78,49 @@
     background:#24799e;
   }
 
-  .displayList {
+  .displayListWrapper{
     display: flex;
     flex-direction: column;
-    align-items: left;
-    flex-wrap: nowrap;
-    width: 320px;
-    background-color:white; 
+    height: 400px;
+    width: 350px;
+    background-color: #fce3e3; 
     border-radius: 6px;
     overflow: auto;
-    height: 400px;
-    margin: 0px 30px;
-    padding-top: 15px;
     overflow-y: scroll;
     overflow-x: hidden;
+  }
+
+  .search {
+    width: 250px;
+    padding: 8px 0px 8px 40px; 
+    align-items: left; 
+    background-color: white; 
+    background-image: url(img/search.svg);
+    background-position: 10px;
+    background-repeat: no-repeat;
+    border: none; 
+    border-radius: 16px;
+    margin-top: 15px;
+    margin-bottom: 15px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    font-size: 16px; 
+    border: none; 
+    outline: none; 
+
+  }
+  
+  .search::placeholder{
+    font-style: italic;
+    color: black; 
+  }
+
+  .displayList {
+    background-color:white; 
+    width: 350px;
+    margin: 0px 30px;
+    margin-left: auto;
+    margin-right: auto; 
 
   }
 
@@ -108,14 +141,13 @@
         line-height: 0;
         text-align: right;
         color: #ff6b6b;
-        margin-top: 25px;
+        margin-top: 40px;
         cursor: pointer;
   }
 
-
   .renderedLi > p:nth-of-type(2){
     background-color: white; 
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
         line-height: 0;
   }
@@ -135,7 +167,7 @@
     .renderedLi > div > p:nth-of-type(1){
     background-color: white; 
     color: gray;
-    font-size: 12px;
+    font-size: 16px;
     font-style: italic;
     line-height: 0;
     text-align: right;
@@ -148,10 +180,13 @@
     font-size: 18px;
     line-height: 0;
     text-align: right;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
   }
 
   .renderedLi > hr{
-    color:#dbdbdc;
+    color: #ebebec;
+    height: 2px;
+    background-color:#ebebec;
+    border: none;
   }
 
