@@ -56,7 +56,7 @@ form.addEventListener('submit', evt => {
 
 list.addEventListener('click', evt => {
   if (evt.target.classList.contains('like')) {
-    const id = evt.target.parentElement.dataset.key;
+    const id = evt.target.parentElement.parentElement.dataset.key;
     console.log(id);
     toggleLike(id);
     renderMessageList(messageList);
@@ -82,10 +82,12 @@ function messageObjToHTML(messageObj) {
   let displayDate = moment().from(oldDate, Boolean);
 
   LI.innerHTML =
-    `<p class='like'>${messageObj.like ? '♥' : '♡'}</p>
-    <p>From: ${messageObj.name}</p>
-    <p>${messageObj.text}</p>
-    <div>  
+    `<div class='firstsection'>
+      <p>From: ${messageObj.name}</p>
+      <p class='like'>${messageObj.like ? '♥' : '♡'}</p>
+    </div>  
+      <p>${messageObj.text}</p>
+    <div class='lastsection'>  
       <p>${displayDate} ago</p>
       <p class='delete'>🗑️</p>
     </div>
