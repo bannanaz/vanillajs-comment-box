@@ -1,5 +1,6 @@
 
 const list = document.querySelector('.displayList');
+
 const inputName = document.getElementById('name');
 const inputText = document.getElementById('message');
 let messageList = [];
@@ -41,25 +42,36 @@ form.addEventListener('submit', evt => {
 });
 
 list.addEventListener('click', evt => {
-  let clickedLI = evt.target.closest('li');
-  let clickedID = clickedLI.getAttribute('data-id');
-  toggleLike(clickedID);
-  renderMessageList(messageList);
+  if (evt.target.classList.contains('like')) {
+    const itemKey = evt.target.parentElement.dataset.key;
+    toggleLike(itemKey);
+    renderMessageList(messageList);
+  }
+
+  if (evt.target.classList.contains('delete')) {
+    const itemKey = evt.target.parentElement.dataset.key;
+    deleteComment(itemKey);
+  }
 });
 
 function messageObjToHTML(messageObj) {
-  let LI = document.createElement('li');
-  LI.setAttribute('data-id', messageObj.id);
+  const item = document.querySelector(`[data-key='${messageObj.id}']`);
+
+  const LI = document.createElement("li");
+  LI.setAttribute('data-key', messageObj.id);
   LI.classList.add("renderedLi");
 
   let oldDate = new Date(messageObj.id);
   let displayDate = moment().from(oldDate, Boolean);
 
   LI.innerHTML =
-    `<p>${messageObj.like ? '♥' : '♡'}</p>
+    `<p class='like'>${messageObj.like ? '♥' : '♡'}</p>
     <p>${messageObj.name}</p>
     <p>${messageObj.text}</p>
-    <p>${displayDate} ago</p>
+    <div>
+      <p>${displayDate} ago</p>
+      <p class='delete'>🗑️</p>
+    </div>
     <hr>
   `
   return LI
@@ -93,4 +105,8 @@ function toggleLike(id) {
 
 function setActiveMessageID(id) {
   activeMessageID = id;
+}
+
+function deleteComment(id) {
+  console.log('deleted!');
 }
