@@ -3,6 +3,8 @@ const list = document.querySelector('.displayList');
 const search = document.querySelector('.search');
 const inputName = document.getElementById('name');
 const inputText = document.getElementById('message');
+const nameError = document.getElementById('errorName');
+const textError = document.getElementById('errorMessage');
 let messageList = [];
 
 document.addEventListener('DOMContentLoaded', initialize);
@@ -13,9 +15,11 @@ function initialize() {
     evt.preventDefault();
     let searchStr = evt.target.value;
     console.log(searchStr);
+
     if (searchStr.length >= 1) {
       let foundNotes = searchNotes(searchStr);
       renderMessageList(foundNotes);
+
     } else {
       renderMessageList(messageList)
     }
@@ -47,7 +51,16 @@ form.addEventListener('submit', evt => {
   const name = inputName.value;
   const text = inputText.value;
 
-  if (name || text !== '') {
+  if (inputName.validity.valueMissing || inputText.validity.valueMissing) {
+    showError();
+    console.log('empty');
+  }
+
+  if (!inputName.validity.valueMissing || !inputText.validity.valueMissing) {
+    removeError();
+  }
+
+  if (!inputName.validity.valueMissing && !inputText.validity.valueMissing) {
     addMessage(name, text);
     inputName.value = "";
     inputText.value = "";
@@ -67,7 +80,6 @@ list.addEventListener('click', evt => {
     deleteComment(id);
     saveMessages();
     renderMessageList(messageList);
-
   }
 });
 
@@ -128,6 +140,26 @@ function setActiveMessageID(id) {
 
 function searchNotes(str, func = function (note) { return note.name.toLowerCase().includes(str.toLowerCase()) || note.text.toLowerCase().includes(str.toLowerCase()) }) {
   return messageList.filter(func)
+}
+
+function showError() {
+  if (inputName.validity.valueMissing) {
+    nameError.style.display = "block";
+  }
+
+  if (inputText.validity.valueMissing) {
+    textError.style.display = "block";
+  }
+}
+
+function removeError() {
+  if (!inputName.validity.valueMissing) {
+    nameError.style.display = "none";
+  }
+
+  if (!inputText.validity.valueMissing) {
+    textError.style.display = "none";
+  }
 }
 
 function deleteComment(key) {

@@ -25,18 +25,35 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
+    width: 260px; 
+    height: 400px; 
+    position: relative; 
+    margin-right: 45px; 
   }
 
   .inputName {
     width: 250px;
-    background-color: white;
-    height: 33px; 
+    height: 33px;
+    background-color: white; 
     font-size: 16px; 
-    margin: 0px 30px 10px 30px;
+    margin: 0px 0px 20px 0px;
     padding: 15px;
     border-radius: 6px;
     border: none; 
     outline: none; 
+  }
+
+   .error {
+  z-index: 1;
+  position: absolute; 
+  top: -30px; 
+  text-align: center;
+  width: 100%;
+  color: #fce3e3; 
+  background-color: #003357;
+  padding: 0px; 
+  margin: 0px; 
+  display: none; 
   }
 
   ::placeholder{
@@ -51,11 +68,24 @@
     padding: 15px;
     border: none;
     outline: none;
-    margin: 0px 30px 10px 30px;
+    margin: 0px 0px 10px 0px;
     font-size: 16px;
     resize: none;
     border-radius: 6px;
     font-family: 'Open Sans', sans-serif;
+  }
+
+   .errorText {
+  z-index: 1;
+  position: absolute; 
+  top: 70px; 
+  text-align: center;
+  width: 100%;
+  color: #fce3e3; 
+  background-color: #003357;
+  padding: 0px; 
+  margin: 0px; 
+  display: none; 
   }
 
   input[type=submit] {

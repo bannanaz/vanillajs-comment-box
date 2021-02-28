@@ -27,10 +27,10 @@
             <form id="inputForm" novalidate>
                 <input type="text" class="inputName" name="name" id="name" value="" placeholder="Your name"
                     required></input>
-                <span class="error" aria-live="polite"></span>
+                <p class="error" id="errorName">➜ Write your name!</p>
                 <br>
                 <textarea name="message" id="message" value="" placeholder="Write something nice!" required></textarea>
-                <span class="error" aria-live="polite"></span>
+                <p class="errorText" id="errorMessage">➜ Write a comment!</p>
                 <input type="submit" id="submit" value="POST">
             </form>
         </div>
