@@ -28,7 +28,14 @@
     width: 260px; 
     height: 400px; 
     position: relative; 
-    margin: 25px; 
+    margin: 0px 25px 25px 25px; 
+  }
+
+  @media only screen and (max-width: 450px) {
+    form { 
+      width: 330px;
+      margin: 0px 0px 25px 0px;
+    }  
   }
 
   .inputName {
@@ -75,6 +82,17 @@
     font-family: 'Open Sans', sans-serif;
   }
 
+  @media only screen and (max-width: 450px) {
+    .inputName { 
+      width: 85%; 
+      margin: 0px 0px 25px 0px;
+    }
+
+    textarea {
+      width: 85%;
+    }  
+  }
+
   .errorText {
     z-index: 1;
     position: absolute; 
@@ -101,7 +119,7 @@
     border: none;
     outline: none;
     margin-top: 30px;
-    margin-bottom: 42px;
+    margin-bottom: 20px;
   }
 
   input[type=submit]:hover {
@@ -116,7 +134,14 @@
     overflow: auto;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin: 25px;
+    margin: 0px 25px 25px 25px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    .displayListWrapper {
+    width: 90%;  
+    margin: 0px 0px 25px 0px;
+    }
   }
 
   .displayListWrapper > div:first-of-type {
@@ -125,9 +150,8 @@
     flex-direction: column;
   }
 
-
   .search {
-    width: 250px;
+    width: 80%;
     padding: 8px 0px 8px 40px; 
     background-color: white; 
     background-image: url(img/search.svg);
@@ -172,7 +196,7 @@
 
   .displayList {
     background-color:white; 
-    width: 350px;
+    width: 100%;
     margin: 0px 30px;
     margin-left: auto;
     margin-right: auto; 
