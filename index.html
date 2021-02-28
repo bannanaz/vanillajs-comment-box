@@ -22,12 +22,11 @@
     </header>
 
     <main>
-
         <div class="writeComment">
             <form id="inputForm" novalidate>
                 <input type="text" class="inputName" name="name" id="name" value="" placeholder="Your name"
                     required></input>
-                <p class="error" id="errorName">➜ Write your name!</p>
+                <p class="error" id="errorName">➜ Don't forget your name!</p>
                 <br>
                 <textarea name="message" id="message" value="" placeholder="Write something nice!" required></textarea>
                 <p class="errorText" id="errorMessage">➜ Write a comment!</p>
@@ -36,7 +35,14 @@
         </div>
 
         <div class="displayListWrapper">
-            <input type="text" class="search icon" value="" placeholder="Search posts"></input>
+            <div>
+                <input type="text" class="search icon" value="" placeholder="Search posts"></input>
+            </div>
+            <div class="empty-state">
+                <p class="sayHi-icon">👋</p>
+                <h2 class="empty-state__title">Add your first comment</h2>
+                <p class="empty-state__description">What would you like say today?</p>
+            </div>
             <div id="displayList" class="displayList">
             </div>
         </div>

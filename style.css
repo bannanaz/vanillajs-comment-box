@@ -1,6 +1,6 @@
 
 
-   * {
+  * {
      background-color:#003357;
    }
 
@@ -28,12 +28,12 @@
     width: 260px; 
     height: 400px; 
     position: relative; 
-    margin-right: 45px; 
+    margin: 25px; 
   }
 
   .inputName {
     width: 250px;
-    height: 33px;
+    height: 37px;
     background-color: white; 
     font-size: 16px; 
     margin: 0px 0px 20px 0px;
@@ -43,17 +43,17 @@
     outline: none; 
   }
 
-   .error {
-  z-index: 1;
-  position: absolute; 
-  top: -30px; 
-  text-align: center;
-  width: 100%;
-  color: #fce3e3; 
-  background-color: #003357;
-  padding: 0px; 
-  margin: 0px; 
-  display: none; 
+  .error {
+    z-index: 1;
+    position: absolute; 
+    top: -30px; 
+    text-align: center;
+    width: 100%;
+    color: #fce3e3; 
+    background-color: #003357;
+    padding: 0px; 
+    margin: 0px; 
+    display: none; 
   }
 
   ::placeholder{
@@ -75,18 +75,18 @@
     font-family: 'Open Sans', sans-serif;
   }
 
-   .errorText {
-  z-index: 1;
-  position: absolute; 
-  top: 70px; 
-  text-align: center;
-  width: 100%;
-  color: #fce3e3; 
-  background-color: #003357;
-  padding: 0px; 
-  margin: 0px; 
-  display: none; 
-  }
+  .errorText {
+    z-index: 1;
+    position: absolute; 
+    top: 70px; 
+    text-align: center;
+    width: 100%;
+    color: #fce3e3; 
+    background-color: #003357;
+    padding: 0px; 
+    margin: 0px; 
+    display: none; 
+    }
 
   input[type=submit] {
     font-size: 22px;
@@ -108,22 +108,27 @@
     background:#24799e;
   }
 
-  .displayListWrapper{
-    display: flex;
-    flex-direction: column;
+  .displayListWrapper {
     height: 400px;
     width: 350px;
-    background-color: #fce3e3; 
+    background-color: white; 
     border-radius: 6px;
     overflow: auto;
     overflow-y: scroll;
     overflow-x: hidden;
+    margin: 25px;
   }
+
+  .displayListWrapper > div:first-of-type {
+    background-color: #fce3e3; 
+    display: flex;
+    flex-direction: column;
+  }
+
 
   .search {
     width: 250px;
     padding: 8px 0px 8px 40px; 
-    align-items: left; 
     background-color: white; 
     background-image: url(img/search.svg);
     background-position: 10px;
@@ -141,6 +146,28 @@
   
   .search::placeholder{
     font-style: italic; 
+  }
+
+  .empty-state {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: white; 
+  }
+
+  .sayHi-icon {
+    font-size: 50px; 
+    background-color: white;
+    margin-top: 50px;
+    margin-bottom: 0px; 
+  }
+
+  .empty-state__title, .empty-state__description {
+    margin-bottom: 20px;
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 10px; 
   }
 
   .displayList {
@@ -170,27 +197,27 @@
 
   .firstsection > p:nth-of-type(1){
     background-color: white; 
-        font-size: 18px;
-        font-weight: bold;
-        line-height: 0.2;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 0.2;
   }
 
   .firstsection > p:nth-of-type(2){
     background-color: white; 
-        font-size: 22px;
-        font-weight: bold;
-        line-height: 0.2;
-        text-align: right;
-        color: #ff6b6b;
-        margin-top: 40px;
-        cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 0.2;
+    text-align: right;
+    color: #ff6b6b;
+    margin-top: 40px;
+    cursor: pointer;
   }
 
   .renderedLi > p:nth-of-type(1){
     background-color: white; 
-      font-size: 16px;
-      margin-top: 0px;
-      margin-bottom: 0px;
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 
   .lastsection {
@@ -200,7 +227,7 @@
     align-items: baseline;
   }
 
-    .lastsection > p:nth-of-type(1){
+  .lastsection > p:nth-of-type(1){
     background-color: white; 
     color: gray;
     font-size: 14px;

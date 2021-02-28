@@ -1,6 +1,7 @@
 
 const list = document.querySelector('.displayList');
 const search = document.querySelector('.search');
+const empty = document.querySelector('.empty-state');
 const inputName = document.getElementById('name');
 const inputText = document.getElementById('message');
 const nameError = document.getElementById('errorName');
@@ -84,7 +85,6 @@ list.addEventListener('click', evt => {
 });
 
 function messageObjToHTML(messageObj) {
-  //const item = document.querySelector(`[data-key='${messageObj.id}']`);
 
   const LI = document.createElement("li");
   LI.setAttribute('data-key', messageObj.id);
@@ -113,6 +113,7 @@ function renderMessageList(arr) {
   arr.forEach(function (post) {
     list.prepend(messageObjToHTML(post));
   })
+  toggleEmpty();
 }
 
 function getMessages() {
@@ -132,6 +133,12 @@ function toggleLike(id) {
   let messageObj = messageList.find(key => key.id == id);
   messageObj.like = !messageObj.like;
   saveMessages();
+}
+
+function toggleEmpty() {
+  if (messageList.length != 0) {
+    empty.style.display = "none";
+  }
 }
 
 function setActiveMessageID(id) {
@@ -164,6 +171,9 @@ function removeError() {
 
 function deleteComment(key) {
   messageList = messageList.filter(item => item.id !== Number(key));
+  if (messageList.length === 0) {
+    empty.style.display = "flex";
+  }
   console.log(messageList);
 }
 
