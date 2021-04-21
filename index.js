@@ -7,6 +7,7 @@ const inputText = document.getElementById('message');
 const nameError = document.getElementById('errorName');
 const textError = document.getElementById('errorMessage');
 let messageList = [];
+let activeMessageID;
 
 document.addEventListener('DOMContentLoaded', initialize);
 
@@ -46,22 +47,26 @@ function addMessage(name, text) {
 }
 
 const form = document.getElementById('inputForm');
-form.addEventListener('submit', evt => {
-  evt.preventDefault();
+form.addEventListener('submit', e => {
+  e.preventDefault();
 
   const name = inputName.value;
   const text = inputText.value;
 
   if (inputName.validity.valueMissing || inputText.validity.valueMissing) {
     showError();
-    console.log('empty');
   }
 
   if (!inputName.validity.valueMissing || !inputText.validity.valueMissing) {
     removeError();
   }
 
-  if (!inputName.validity.valueMissing && !inputText.validity.valueMissing) {
+  if (activeMessageID) {
+    updateMessage(activeMessageID);
+    removeMessageID();
+  }
+
+  else if (inputName.validity.valid && inputText.validity.valid) {
     addMessage(name, text);
     inputName.value = "";
     inputText.value = "";
@@ -69,18 +74,22 @@ form.addEventListener('submit', evt => {
 });
 
 list.addEventListener('click', evt => {
+  let clickedLI = evt.target.closest('li');
+  let clickedID = clickedLI.getAttribute('data-key');
+
   if (evt.target.classList.contains('like')) {
-    const id = evt.target.parentElement.parentElement.dataset.key;
-    console.log(id);
-    toggleLike(id);
+    console.log(clickedID);
+    toggleLike(clickedID);
     renderMessageList(messageList);
   }
 
   if (evt.target.classList.contains('delete')) {
-    const id = evt.target.parentElement.parentElement.dataset.key;
-    deleteComment(id);
+    deleteComment(clickedID);
     saveMessages();
     renderMessageList(messageList);
+  }
+  else {
+    setText(readMessage(clickedID));
   }
 });
 
@@ -94,15 +103,17 @@ function messageObjToHTML(messageObj) {
   let displayDate = moment().from(oldDate, Boolean);
 
   LI.innerHTML =
-    `<div class='firstsection'>
+    `<div>
+    <div class='firstsection'>
       <p>From: ${messageObj.name}</p>
       <p class='like'>${messageObj.like ? '♥' : '♡'}</p>
     </div>  
-      <p>${messageObj.text}</p>
+      <p class='text'>${messageObj.text}</p>
     <div class='lastsection'>  
       <p>${displayDate} ago</p>
       <p class='delete'>🗑️</p>
     </div>
+    <div>
     <hr>
   `
   return LI
@@ -122,7 +133,7 @@ function getMessages() {
     return;
   }
   messageList = JSON.parse(MessageStr);
-  console.log(messageList);
+  //console.log(messageList);
 }
 
 function saveMessages() {
@@ -139,10 +150,6 @@ function toggleEmpty() {
   if (messageList.length != 0) {
     empty.style.display = "none";
   }
-}
-
-function setActiveMessageID(id) {
-  activeMessageID = id;
 }
 
 function searchNotes(str, func = function (note) { return note.name.toLowerCase().includes(str.toLowerCase()) || note.text.toLowerCase().includes(str.toLowerCase()) }) {
@@ -168,6 +175,35 @@ function removeError() {
     textError.style.display = "none";
   }
 }
+
+function readMessage(id) {
+  let newObj = messageList.find(item => item.id == id);
+  return newObj;
+}
+
+function setText(item) {
+  inputName.value = item.name;
+  inputText.value = item.text;
+  setActiveMessageID(item.id);
+}
+
+function updateMessage(id) {
+  let messageObj = messageList.find(item => item.id == id);
+  messageObj.name = inputName.value;
+  messageObj.text = inputText.value;
+  saveMessages();
+  renderMessageList(messageList);
+}
+
+function setActiveMessageID(id) {
+  activeMessageID = id;
+}
+
+function removeMessageID() {
+  location.reload()
+}
+
+
 
 function deleteComment(key) {
   messageList = messageList.filter(item => item.id !== Number(key));

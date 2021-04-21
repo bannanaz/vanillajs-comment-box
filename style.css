@@ -1,6 +1,6 @@
 
 
-  * {
+  body {
      background-color:#003357;
    }
 
@@ -40,7 +40,7 @@
 
   .inputName {
     width: 250px;
-    height: 37px;
+    height: 25px;
     background-color: white; 
     font-size: 16px; 
     margin: 0px 0px 20px 0px;
@@ -204,7 +204,6 @@
 
   .renderedLi{
     font-family: 'Open Sans', sans-serif;
-    background-color: white; 
     width: 85%;
     margin-left: auto; 
     margin-right: auto; 
@@ -212,22 +211,23 @@
     cursor: pointer;
   }
 
+  .renderedLi:hover {
+    color: gray;
+  }
+
   .firstsection {
     display: flex; 
-    background-color: white;
     justify-content: space-between;
     align-items: baseline;
   }
 
-  .firstsection > p:nth-of-type(1){
-    background-color: white; 
+  .firstsection > p:nth-of-type(1) {
     font-size: 18px;
     font-weight: bold;
     line-height: 0.2;
   }
 
   .firstsection > p:nth-of-type(2){
-    background-color: white; 
     font-size: 22px;
     font-weight: bold;
     line-height: 0.2;
@@ -237,8 +237,11 @@
     cursor: pointer;
   }
 
+  .firstsection > p:nth-of-type(2):hover {
+    color: red;
+  }
+
   .renderedLi > p:nth-of-type(1){
-    background-color: white; 
     font-size: 16px;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -246,13 +249,11 @@
 
   .lastsection {
     display: flex; 
-    background-color: white;
     justify-content: flex-end;
     align-items: baseline;
   }
 
   .lastsection > p:nth-of-type(1){
-    background-color: white; 
     color: gray;
     font-size: 14px;
     font-style: italic;
@@ -263,7 +264,6 @@
   }
 
   .lastsection > p:nth-of-type(2){
-    background-color: white; 
     font-size: 18px;
     line-height: 0;
     text-align: right;
