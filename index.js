@@ -41,7 +41,7 @@ function addMessage(name, text) {
 
   messageList.push(messageObj);
   saveMessages();
-  setActiveMessageID(messageObj.id);
+  //setActiveMessageID(messageObj.id);
   renderMessageList(messageList);
   console.log(messageList);
 }
@@ -88,7 +88,7 @@ list.addEventListener('click', evt => {
     saveMessages();
     renderMessageList(messageList);
   }
-  else {
+  else if (evt.target.classList.contains('message' || 'name')) {
     setText(readMessage(clickedID));
   }
 });
@@ -105,11 +105,11 @@ function messageObjToHTML(messageObj) {
   LI.innerHTML =
     `<div>
     <div class='firstsection'>
-      <p>From: ${messageObj.name}</p>
+      <p class='name'>From: ${messageObj.name}</p>
       <p class='like'>${messageObj.like ? '♥' : '♡'}</p>
     </div>  
-      <p class='text'>${messageObj.text}</p>
-    <div class='lastsection'>  
+      <p class='message'>${messageObj.text}</p>
+    <div class='lastsection'> 
       <p>${displayDate} ago</p>
       <p class='delete'>🗑️</p>
     </div>
@@ -202,8 +202,6 @@ function setActiveMessageID(id) {
 function removeMessageID() {
   location.reload()
 }
-
-
 
 function deleteComment(key) {
   messageList = messageList.filter(item => item.id !== Number(key));
