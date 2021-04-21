@@ -88,7 +88,10 @@ list.addEventListener('click', evt => {
     saveMessages();
     renderMessageList(messageList);
   }
-  else if (evt.target.classList.contains('message' || 'name')) {
+  if (evt.target.classList.contains('message')) {
+    setText(readMessage(clickedID));
+  }
+  else if (evt.target.classList.contains('name')) {
     setText(readMessage(clickedID));
   }
 });
@@ -200,7 +203,9 @@ function setActiveMessageID(id) {
 }
 
 function removeMessageID() {
-  location.reload()
+  activeMessageID = !activeMessageID
+  inputName.value = "";
+  inputText.value = "";
 }
 
 function deleteComment(key) {

@@ -44,7 +44,7 @@
     background-color: white; 
     font-size: 16px; 
     margin: 0px 0px 20px 0px;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 6px;
     border: none; 
     outline: none; 
@@ -122,9 +122,9 @@
     margin-bottom: 20px;
   }
 
-  input[type=submit]:hover {
+  /*input[type=submit]:hover {
     background:#24799e;
-  }
+  }*/
 
   .displayListWrapper {
     height: 400px;
@@ -219,32 +219,35 @@
     display: flex; 
     justify-content: space-between;
     align-items: baseline;
+    line-height: 2.5;
   }
 
   .firstsection > p:nth-of-type(1) {
     font-size: 18px;
     font-weight: bold;
-    line-height: 0.2;
+    padding: 0px; 
+    margin: 0px; 
   }
 
   .firstsection > p:nth-of-type(2){
     font-size: 22px;
     font-weight: bold;
-    line-height: 0.2;
     text-align: right;
     color: #ff6b6b;
     margin-top: 40px;
     cursor: pointer;
+    padding: 0px; 
+    margin: 0px; 
   }
 
   .firstsection > p:nth-of-type(2):hover {
     color: red;
   }
 
-  .renderedLi > p:nth-of-type(1){
+  .renderedLi p{
     font-size: 16px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin: 0px;
+    padding: 0px; 
   }
 
   .lastsection {
@@ -257,7 +260,6 @@
     color: gray;
     font-size: 14px;
     font-style: italic;
-    line-height: 0;
     text-align: right;
     padding-bottom: 10px;
     padding-right: 15px;
